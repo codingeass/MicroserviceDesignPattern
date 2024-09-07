@@ -3,6 +3,7 @@ package com.app.shopping.deliveryService.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,8 +34,8 @@ public class DeliveryController {
 	}
 	
 	@ResponseStatus(HttpStatus.OK)
-	@DeleteMapping
-	public void revertOrderDelivery(Long orderId) {
+	@DeleteMapping("/order/{orderId}")
+	public void revertOrderDelivery(@PathVariable Long orderId) {
 		log.info("Delivery orderId {} reverse request received", orderId);
 		deliveryService.revertOrderDelivery(orderId);
 	}
