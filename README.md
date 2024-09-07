@@ -1,4 +1,4 @@
-# MicroserviceDesignPattern
+# Microservice Design Pattern
 Implementation of various microservice design patterns
 
 ## Simple Saga Pattern Implementation
