@@ -1,5 +1,6 @@
 package com.app.shopping.orderService.service;
 
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -17,8 +18,6 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class OrderServiceImpl implements OrderService{
 
-	ExecutorService executorService = Executors.newSingleThreadExecutor();
-	
 	@Autowired
 	DeliveryClient deliveryClient;
 	
@@ -28,8 +27,7 @@ public class OrderServiceImpl implements OrderService{
 			log.error("Error booking order with OrderId {}", orderDto.getOrderId());
 			throw new OrderCreationException("Not able to create order" + orderDto.getOrderName());
 		}
-		executorService.submit(() -> {
-			try {
+		CompletableFuture.runAsync(() -> {
 				DeliveryDto deliveryDto = DeliveryDto.builder()
 						.deliveryLocation(orderDto.getDeliveryLocation())
 						.orderId(orderDto.getOrderId())
@@ -37,9 +35,6 @@ public class OrderServiceImpl implements OrderService{
 						.paymentAmount(orderDto.getPaymentAmount())
 						.build();
 				deliveryClient.bookDelivery(deliveryDto);
-			} catch(Exception e) {
-				log.error("Error : {} {}", e.getMessage(), e);
-			}
 		});
 		return orderDto;
 	}

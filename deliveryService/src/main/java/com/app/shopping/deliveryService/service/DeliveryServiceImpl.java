@@ -1,5 +1,6 @@
 package com.app.shopping.deliveryService.service;
 
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -17,7 +18,6 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class DeliveryServiceImpl implements DeliveryService {
 
-	ExecutorService executorService = Executors.newSingleThreadExecutor();
 	
 	@Autowired
 	OrderClient orderClient;
@@ -29,15 +29,11 @@ public class DeliveryServiceImpl implements DeliveryService {
 	public DeliveryDto bookDeliveryStatus(DeliveryDto deliveryDto) throws DeliveryCreationException {
 		if("Lucknow".equalsIgnoreCase(deliveryDto.getDeliveryLocation())) {
 			log.error("Delivery Failed for OrderId {}", deliveryDto.getOrderId());
-			executorService.execute(() -> {
-				orderClient.revertOrder((Long)deliveryDto.getOrderId());
-			});
+			CompletableFuture.runAsync(() -> orderClient.revertOrder((Long)deliveryDto.getOrderId()));
 			throw new DeliveryCreationException("Failed to deliver order");
 		}
 		log.info("Calling Payment Service for OrderId {}", deliveryDto.getOrderId());
-		executorService.execute(() -> {
-			paymentServiceClient.confirmPayment(deliveryDto.getOrderId(), deliveryDto.getPaymentAmount());
-		});
+		CompletableFuture.runAsync(() -> paymentServiceClient.confirmPayment(deliveryDto.getOrderId(), deliveryDto.getPaymentAmount()));
 		return deliveryDto;
 	}
 

@@ -1,5 +1,6 @@
 package com.app.shopping.paymentService.service;
 
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -15,8 +16,6 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class PaymentServiceImpl implements PaymentService{
 	
-	ExecutorService executorService = Executors.newSingleThreadExecutor();
-	
 	@Autowired
 	DeliveryClient deliveryClient;
 	
@@ -28,10 +27,8 @@ public class PaymentServiceImpl implements PaymentService{
 		log.info("Payment for OrderId received {}", orderId);
 		if(paymentAmount > 2000) {
 			log.error("Reverting OrderId {} due to payment being greater than 2000", orderId);
-			executorService.submit(() -> {
-				orderClient.revertOrder(orderId);
-				deliveryClient.revertOrderDelivery(orderId);
-			});
+			CompletableFuture.runAsync(() -> orderClient.revertOrder(orderId));
+			CompletableFuture.runAsync(() -> deliveryClient.revertOrderDelivery(orderId));
 			return;
 		}
 		log.info("Payment Successful for OrderId {}", orderId);
