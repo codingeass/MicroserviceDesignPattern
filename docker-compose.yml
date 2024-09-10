@@ -1,0 +1,27 @@
+services:
+  deliveryServiceApp:
+    image:
+      deliveryservice
+    ports:
+      - "8081:8081"
+      - "5005:5005"
+    networks:
+      - mynetwork
+  orderServiceApp:
+    image:
+      orderservice
+    ports:
+      - "8080:8080"
+      - "5006:5006"
+    networks:
+      - mynetwork
+  paymentServiceApp:
+    image:
+      paymentservice
+    ports:
+      - "8082:8082"
+      - "5007:5007"
+    networks:
+      - mynetwork
+networks:
+  mynetwork:

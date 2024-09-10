@@ -14,6 +14,8 @@ import com.app.shopping.orderService.dto.OrderDto;
 import com.app.shopping.orderService.exception.OrderCreationException;
 import com.app.shopping.orderService.service.OrderService;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

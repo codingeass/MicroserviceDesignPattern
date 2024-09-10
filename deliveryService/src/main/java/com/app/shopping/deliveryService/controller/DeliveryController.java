@@ -29,7 +29,7 @@ public class DeliveryController {
 	@ResponseStatus(HttpStatus.OK)
 	@PutMapping(value ="/book")
 	public DeliveryDto bookOrderDelivery(@RequestBody DeliveryDto deliveryDto) throws DeliveryCreationException {
-		log.info("Delivery Service Triggered for OrderId {}", deliveryDto.getOrderId());
+		log.info("Delivery Service Triggered1 for OrderId {}", deliveryDto.getOrderId());
 		return deliveryService.bookDeliveryStatus(deliveryDto);
 	}
 	

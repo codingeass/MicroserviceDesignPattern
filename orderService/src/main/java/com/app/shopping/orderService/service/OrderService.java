@@ -9,4 +9,9 @@ public interface OrderService {
 
 	void reverseOrder(Long orderId);
 
+	void issueCheck(OrderDto orderDto) throws OrderCreationException;
+
+	public OrderDto orderServiceBookRetry(OrderDto orderDto, Exception ex) throws OrderCreationException;
+
+	void orderServiceBookRetrySelf(OrderDto orderDto, Exception ex) throws OrderCreationException;
 }
