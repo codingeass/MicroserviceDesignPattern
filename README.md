@@ -24,7 +24,7 @@ In this application, invoking the order service endpoint (http://localhost:8080/
   "paymentAmount": 200
 }
 ```
-![image](https://github.com/user-attachments/assets/bc255db4-348a-4296-bf7e-134918a8511f)
+![image](https://github.com/user-attachments/assets/aaea73e0-05d8-491d-ba29-8086d05afbd1)
 
 
 Following logs are printed:
