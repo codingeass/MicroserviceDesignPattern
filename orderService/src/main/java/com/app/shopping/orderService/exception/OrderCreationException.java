@@ -1,6 +1,6 @@
 package com.app.shopping.orderService.exception;
 
-public class OrderCreationException extends Exception {
+public class OrderCreationException extends RuntimeException {
 	
 	private static final long serialVersionUID = 1L;
 

@@ -8,9 +8,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderDto {
-
 	long orderId;
 	String orderName;
 	String orderStatus;
-	
+	Double paymentAmount;
 }

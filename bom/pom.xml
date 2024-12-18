@@ -10,23 +10,23 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.app.shopping</groupId>
-	<artifactId>paymentService</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>paymentService</name>
-	<packaging>jar</packaging>
-	<description>Payment Service Application</description>
+	<artifactId>common-bom</artifactId>
+	<version>0.0.1</version>
+	<name>commonBom</name>
+	<packaging>pom</packaging>
+	<description>Common BOM file for Microservices</description>
 	<url />
 	<licenses>
 		<license />
 	</licenses>
 	<developers>
-		<developer />
+		<developer>
+			<name>Amandeep Gupta</name>
+			<email>codingeass@gmail.com</email>
+		</developer>
 	</developers>
 	<scm>
-		<connection />
-		<developerConnection />
-		<tag />
-		<url />
+		<url>https://github.com/eazybytes/microservices</url>
 	</scm>
 	<properties>
 		<java.version>21</java.version>
@@ -70,10 +70,6 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-function-context</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-function-web</artifactId>
-		</dependency>
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
@@ -93,19 +89,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>3.2.0</version>
-				<configuration>
-					<archive>
-						<manifest>
-							<addClasspath>true</addClasspath>
-							<mainClass>com.app.shopping.paymentService.PaymentApplication</mainClass>
-						</manifest>
-					</archive>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>

@@ -1,14 +1,14 @@
 package com.app.shopping.deliveryService.service;
 
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import com.app.shopping.deliveryService.client.OrderClient;
 import com.app.shopping.deliveryService.client.PaymentServiceClient;
+import com.app.shopping.deliveryService.dto.OrderDto;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.app.shopping.deliveryService.dto.DeliveryDto;
 import com.app.shopping.deliveryService.exception.DeliveryCreationException;
 
@@ -33,7 +33,9 @@ public class DeliveryServiceImpl implements DeliveryService {
 			throw new DeliveryCreationException("Failed to deliver order");
 		}
 		log.info("Calling Payment Service for OrderId {}", deliveryDto.getOrderId());
-		CompletableFuture.runAsync(() -> paymentServiceClient.confirmPayment(deliveryDto.getOrderId(), deliveryDto.getPaymentAmount()));
+		OrderDto orderDto = new OrderDto();
+		BeanUtils.copyProperties(deliveryDto, orderDto);
+		CompletableFuture.runAsync(() -> paymentServiceClient.confirmPayment(orderDto));
 		return deliveryDto;
 	}
 
