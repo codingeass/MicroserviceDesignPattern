@@ -1,5 +1,7 @@
 services:
   deliveryServiceApp:
+    build:
+      context: .\deliveryService
     image:
       deliveryservice
     ports:
@@ -8,6 +10,8 @@ services:
     networks:
       - mynetwork
   orderServiceApp:
+    build:
+      context: .\orderService
     image:
       orderservice
     ports:
@@ -16,6 +20,8 @@ services:
     networks:
       - mynetwork
   paymentServiceApp:
+    build:
+      context: .\paymentService
     image:
       paymentservice
     ports:
