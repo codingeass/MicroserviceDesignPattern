@@ -8,8 +8,17 @@ Implementation of various microservice design patterns
 2. **Java 21**
 3. **OpenFeign**
 4. **OpenApi**
+5. **Docker**
+6. **Docker Compose**
 
 ![Saga Pattern Flowchart](https://raw.githubusercontent.com/codingeass/MicroserviceDesignPattern/main/Artifact/Flowchart%20-%20Saga%20Pattern%20-%20Each%20Service%20Calling%20Compensating%20Transaction.jpg)
+
+To start the application using docker install docker desktop and then go to the directory and run command:
+
+```
+docker-compose build
+docker-compose up
+```
 
 In this application, invoking the order service endpoint (http://localhost:8080/order/update/status - SwaggerUI is available at http://localhost:8080/swagger-ui/index.html) to update the order status with a payment amount less than 2000 and a delivery location other than Lucknow will trigger the services successfully.
 
