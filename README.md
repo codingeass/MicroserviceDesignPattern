@@ -10,6 +10,7 @@ Implementation of various microservice design patterns
 4. **OpenApi**
 5. **Docker**
 6. **Docker Compose**
+7. **Spring Cloud Function** - From previous branch of docker-compose-setup, this branch contains code changes related to communication between service using spring cloud function.
 
 ![Saga Pattern Flowchart](https://raw.githubusercontent.com/codingeass/MicroserviceDesignPattern/main/Artifact/Flowchart%20-%20Saga%20Pattern%20-%20Each%20Service%20Calling%20Compensating%20Transaction.jpg)
 
@@ -26,7 +27,7 @@ In this application, invoking the order service endpoint (http://localhost:8080/
 
 ### Example
 
-**POST**: `http://localhost:8080/order/update/status`
+**POST**: `http://localhost:8080/updateOrderStatus`
 ```json
 {
   "orderId": 200,
@@ -45,7 +46,7 @@ Following logs are printed:
 [paymentService] [nio-8082-exec-1] c.a.s.p.service.PaymentServiceImpl       : Payment Successful for OrderId 200
 ```
 
-**POST**: `http://localhost:8080/order/update/status`
+**POST**: `http://localhost:8080/updateOrderStatus`
 ```json
 {
   "orderId": 200,
@@ -68,7 +69,7 @@ The logs below indicate that when the delivery failed due to the location constr
 
 
 
-**POST**: `http://localhost:8080/order/update/status`
+**POST**: `http://localhost:8080/updateOrderStatus`
 ```json
 {
   "orderId": 200,
