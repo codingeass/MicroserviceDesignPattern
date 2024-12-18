@@ -28,9 +28,7 @@ Like for paymentService which was available in localhost:8082 can be accessed us
 
 In this application, invoking the order service endpoint (http://localhost:8080/order/update/status - SwaggerUI is available at http://localhost:8080/swagger-ui/index.html) to update the order status with a payment amount less than 2000 and a delivery location other than Lucknow will trigger the services successfully.
 
-### Example
-
-**POST**: `http://localhost:8080/updateOrderStatus`
+**Publish Message in exchange order-service-order-status-receive**:
 ```json
 {
   "orderId": 200,
@@ -39,6 +37,8 @@ In this application, invoking the order service endpoint (http://localhost:8080/
   "paymentAmount": 200
 }
 ```
+![image](https://github.com/user-attachments/assets/aaea73e0-05d8-491d-ba29-8086d05afbd1)
+
 
 Following logs are printed:
 ```
@@ -49,7 +49,7 @@ Following logs are printed:
 [paymentService] [nio-8082-exec-1] c.a.s.p.service.PaymentServiceImpl       : Payment Successful for OrderId 200
 ```
 
-**POST**: `http://localhost:8080/updateOrderStatus`
+**Publish Message in exchange order-service-order-status-receive**:
 ```json
 {
   "orderId": 200,
@@ -72,7 +72,7 @@ The logs below indicate that when the delivery failed due to the location constr
 
 
 
-**POST**: `http://localhost:8080/updateOrderStatus`
+**Publish Message in exchange order-service-order-status-receive**:
 ```json
 {
   "orderId": 200,
