@@ -15,7 +15,7 @@ In this application, invoking the order service endpoint (http://localhost:8080/
 
 ### Example
 
-**POST**: `http://localhost:8080/order/update/status`
+**Publish Message in exchange order-service-order-status-receive**:
 ```json
 {
   "orderId": 200,
@@ -24,6 +24,8 @@ In this application, invoking the order service endpoint (http://localhost:8080/
   "paymentAmount": 200
 }
 ```
+![image](https://github.com/user-attachments/assets/bc255db4-348a-4296-bf7e-134918a8511f)
+
 
 Following logs are printed:
 ```
@@ -34,7 +36,7 @@ Following logs are printed:
 [paymentService] [nio-8082-exec-1] c.a.s.p.service.PaymentServiceImpl       : Payment Successful for OrderId 200
 ```
 
-**POST**: `http://localhost:8080/order/update/status`
+**Publish Message in exchange order-service-order-status-receive**:
 ```json
 {
   "orderId": 200,
@@ -57,7 +59,7 @@ The logs below indicate that when the delivery failed due to the location constr
 
 
 
-**POST**: `http://localhost:8080/order/update/status`
+**Publish Message in exchange order-service-order-status-receive**:
 ```json
 {
   "orderId": 200,
