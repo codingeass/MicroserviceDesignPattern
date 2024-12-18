@@ -19,6 +19,8 @@ To start the application using docker install docker desktop and then go to the 
 docker-compose build
 docker-compose up
 ```
+Notice changes from master branch in application.properties file now instead of referring localhost services are calling each other using service name mentioned in the docker-compose.yml file.
+Like for paymentService which was available in localhost:8082 can be accessed using paymentServiceApp:8082.
 
 In this application, invoking the order service endpoint (http://localhost:8080/order/update/status - SwaggerUI is available at http://localhost:8080/swagger-ui/index.html) to update the order status with a payment amount less than 2000 and a delivery location other than Lucknow will trigger the services successfully.
 
