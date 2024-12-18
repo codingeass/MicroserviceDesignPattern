@@ -23,7 +23,7 @@ public class DeliveryServiceFunction {
     @Bean
     public Function<DeliveryDto, DeliveryDto> bookOrderDelivery() throws DeliveryCreationException {
         return deliveryDto -> {
-            log.info("Delivery Service Triggered1 for OrderId {}", deliveryDto.getOrderId());
+            log.info("Delivery Service Triggered for OrderId {}", deliveryDto.getOrderId());
             return deliveryService.bookDeliveryStatus(deliveryDto);
         };
     }

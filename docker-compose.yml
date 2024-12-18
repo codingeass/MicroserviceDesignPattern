@@ -23,5 +23,13 @@ services:
       - "5007:5007"
     networks:
       - mynetwork
+  rabbitMQ:
+    image:
+      rabbitmq:3-management
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    networks:
+      - mynetwork
 networks:
   mynetwork:
