@@ -8,14 +8,29 @@ Implementation of various microservice design patterns
 2. **Java 21**
 3. **OpenFeign**
 4. **OpenApi**
+5. **Docker**
+6. **Docker Compose**
+7. **Spring Cloud Stream** - From previous branch of cloud-function, this branch contains code changes related to communication between service using spring cloud stream and RabbitMQ.
+8. **RabbitMQ**
+
+RabbitMQ Management is running on 15672 port.
 
 ![Saga Pattern Flowchart](https://raw.githubusercontent.com/codingeass/MicroserviceDesignPattern/main/Artifact/Flowchart%20-%20Saga%20Pattern%20-%20Each%20Service%20Calling%20Compensating%20Transaction.jpg)
+
+To start the application using docker install docker desktop and then go to the directory and run command:
+
+```
+docker-compose build
+docker-compose up
+```
+Notice changes from master branch in application.properties file now instead of referring localhost services are calling each other using service name mentioned in the docker-compose.yml file.
+Like for paymentService which was available in localhost:8082 can be accessed using paymentServiceApp:8082.
 
 In this application, invoking the order service endpoint (http://localhost:8080/order/update/status - SwaggerUI is available at http://localhost:8080/swagger-ui/index.html) to update the order status with a payment amount less than 2000 and a delivery location other than Lucknow will trigger the services successfully.
 
 ### Example
 
-**POST**: `http://localhost:8080/order/update/status`
+**POST**: `http://localhost:8080/updateOrderStatus`
 ```json
 {
   "orderId": 200,
@@ -34,7 +49,7 @@ Following logs are printed:
 [paymentService] [nio-8082-exec-1] c.a.s.p.service.PaymentServiceImpl       : Payment Successful for OrderId 200
 ```
 
-**POST**: `http://localhost:8080/order/update/status`
+**POST**: `http://localhost:8080/updateOrderStatus`
 ```json
 {
   "orderId": 200,
@@ -57,7 +72,7 @@ The logs below indicate that when the delivery failed due to the location constr
 
 
 
-**POST**: `http://localhost:8080/order/update/status`
+**POST**: `http://localhost:8080/updateOrderStatus`
 ```json
 {
   "orderId": 200,
