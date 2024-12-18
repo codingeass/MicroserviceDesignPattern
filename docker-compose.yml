@@ -1,0 +1,35 @@
+services:
+  deliveryServiceApp:
+    image:
+      deliveryservice
+    ports:
+      - "8081:8081"
+      - "5005:5005"
+    networks:
+      - mynetwork
+  orderServiceApp:
+    image:
+      orderservice
+    ports:
+      - "8080:8080"
+      - "5006:5006"
+    networks:
+      - mynetwork
+  paymentServiceApp:
+    image:
+      paymentservice
+    ports:
+      - "8082:8082"
+      - "5007:5007"
+    networks:
+      - mynetwork
+  rabbitMQ:
+    image:
+      rabbitmq:3-management
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    networks:
+      - mynetwork
+networks:
+  mynetwork:
